@@ -2,6 +2,11 @@
 
 This Python script automates the process of converting folders of image files into CBZ (Comic Book Zip) files. It is particularly useful for organizing and compressing collections of manga, comics, or any series of images into a single CBZ file for easy viewing in comic reader applications.
 
+## Works Good On
+- Comics
+- Manga
+- Scans of Book Pages
+
 ## Features
 
 - Recursively processes a main directory to locate subdirectories containing image files.
