@@ -1,6 +1,7 @@
-# CBZ Creator Script
+# CBZ Maker
 
-This Python script automates the process of converting folders of image files into CBZ (Comic Book Zip) files. It is particularly useful for organizing and compressing collections of manga, comics, or any series of images into a single CBZ file for easy viewing in comic reader applications.
+CBZ Maker is a Python-based tool for building CBZ files out of images in sequence. It simplifies the process of organizing, combining, and adding metadata to large collections of documents, manga, or scanned books to ensure they are maintained in the correct series for self-hosted reading platforms like [Kavita](https://www.kavitareader.com/).
+
 
 ## Works Good On
 - Comics
@@ -9,10 +10,18 @@ This Python script automates the process of converting folders of image files in
 
 ## Features
 
-- Recursively processes a main directory to locate subdirectories containing image files.
-- Creates a `CBZ_Files` folder in the main directory to store the generated CBZ files.
-- Supports common image file formats: `.jpg`, `.jpeg`, and `.png`.
-- Preserves the original folder structure in the CBZ output.
+- **Batch CBZ Creation**: Automatically converts folders of images into properly formatted CBZ files.
+- **Metadata Embedding**: Adds series metadata (`ComicInfo.xml`) to ensure files are grouped and labeled correctly.
+- **Supports Existing CBZ Files**: Scans for existing CBZ files in the series and updates them with missing metadata.
+- **Self-Hosted Platform Compatibility**: Designed to work seamlessly with self-hosted platforms like Kavita.
+- **Supports common image file formats**: `.jpg`, `.jpeg`, and `.png`.
+
+## Use Cases
+
+1. **Books Scanned by Chapters**: Organize and combine folders of scanned book chapters into a CBZ for easy reading.
+2. **Manga Collections**: Turn folders of manga scans into CBZ files while maintaining series structure and metadata.
+3. **Large Document Collections**: Quickly convert and organize image-based archives into CBZ files for easy distribution or self-hosting.
+4. **Metadata Addition**: Add or fix missing series metadata for existing CBZ files.
 
 ## How It Works
 
@@ -50,6 +59,13 @@ Each CBZ file will include the respective images from the original subdirectorie
 - Python 3.6 or later.
 - Ensure your directory structure is organized with images in subfolders.
 
+## Requirements
+os
+zipfile
+pathlib
+shutil
+xml.etree.ElementTree
+
 ## Notes
 - Only .jpg, .jpeg, and .png images are included in the CBZ files.
 - The script skips folders without images.
@@ -64,6 +80,10 @@ This project is licensed under the MIT License. See the LICENSE file for details
 
 ## Contributions
 Contributions, issues, and feature requests are welcome! Feel free to check the issues page.
+
+## Acknowledgments
+Inspired by the need to maintain well-organized manga and comic collections for self-hosted platforms.
+Shoutout to the community of self-hosting enthusiasts for their support and feedback!
 
 ## Contact
 For questions or feedback, open an issue or reach out to the repository maintainer.
