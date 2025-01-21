@@ -26,6 +26,19 @@ def add_metadata_to_cbz(cbz_file_path, series_name):
     print(f"Metadata added to {cbz_file_path}")
 
 
+def clean_chapter_name(chapter_name):
+    """
+    Clean chapter name by removing text after the first ' - ' unless it's 'Chapter'.
+    """
+    if " - " in chapter_name:
+        parts = chapter_name.split(" - ")
+        # Check if the word after the '-' is 'Chapter'
+        if len(parts) > 1 and parts[1].strip().startswith("Chapter"):
+            return chapter_name.strip()  # Keep the name as is
+        return parts[0].strip()  # Remove the part after '-'
+    return chapter_name.strip()  # Return original name if no '-'
+
+
 def create_cbz_from_folders(main_directory):
     main_dir = Path(main_directory)
     if not main_dir.is_dir():
@@ -44,9 +57,12 @@ def create_cbz_from_folders(main_directory):
             if not chapter_folder.is_dir():
                 continue
 
+            # Clean the chapter name if needed
+            clean_name = clean_chapter_name(chapter_folder.name)
+
             # Gather all image files in the chapter folder
             images = sorted(
-                [file for file in chapter_folder.iterdir() if file.suffix.lower() in ['.jpg', '.jpeg', '.png']]
+                [file for file in chapter_folder.iterdir() if file.suffix.lower() in ['.jpg', '.jpeg', '.png', '.webp']]
             )
 
             if not images:
@@ -54,7 +70,7 @@ def create_cbz_from_folders(main_directory):
                 continue
 
             # Define CBZ file path
-            cbz_file_path = manga_folder / f"{chapter_folder.name}.cbz"
+            cbz_file_path = manga_folder / f"{clean_name}.cbz"
             print(f"Creating CBZ file: {cbz_file_path}")
 
             # Create the CBZ file
@@ -97,5 +113,6 @@ def update_existing_cbz_metadata(main_directory):
             # Add metadata if not present
             add_metadata_to_cbz(cbz_file, series_name)
 
-main_directory = r"C:\Users\user\Documents\Mangas\MANGA"
+
+main_directory = r"I:\# Manga"
 create_cbz_from_folders(main_directory)
